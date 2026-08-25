@@ -1,5 +1,5 @@
-@import "tailwindcss";
-@import "../../vendor/livewire/flux/dist/flux.css";
+@import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -9,78 +9,35 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --font-sans:
-        "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
-        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-        "Noto Color Emoji";
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-    --color-zinc-50: #f8f9fa;
-    --color-zinc-100: #f1f3f5;
-    --color-zinc-200: #e9ecef;
-    --color-zinc-300: #dee2e6;
-    --color-zinc-400: #ced4da;
-    --color-zinc-500: #adb5bd;
-    --color-zinc-600: #6c757d;
-    --color-zinc-700: #495057;
-    --color-zinc-800: #343a40;
-    --color-zinc-900: #212529;
-    --color-zinc-950: #1a1e21;
+    --color-zinc-50: #fafafa;
+    --color-zinc-100: #f5f5f5;
+    --color-zinc-200: #e5e5e5;
+    --color-zinc-300: #d4d4d4;
+    --color-zinc-400: #a3a3a3;
+    --color-zinc-500: #737373;
+    --color-zinc-600: #525252;
+    --color-zinc-700: #404040;
+    --color-zinc-800: #262626;
+    --color-zinc-900: #171717;
+    --color-zinc-950: #0a0a0a;
 
     --color-accent: var(--color-neutral-800);
     --color-accent-content: var(--color-neutral-800);
     --color-accent-foreground: var(--color-white);
-
-    /* ====================== Start penguin ====================== */
-
-    /* light theme */
-    --color-surface: var(--color-zinc-50);
-    --color-surface-alt: var(--color-zinc-100);
-    --color-on-surface: var(--color-neutral-600);
-    --color-on-surface-strong: var(--color-neutral-900);
-    --color-primary: var(--color-sky-700);
-    --color-on-primary: var(--color-white);
-    --color-secondary: var(--color-black);
-    --color-on-secondary: var(--color-white);
-    --color-outline: var(--color-zinc-300);
-    --color-outline-strong: var(--color-zinc-500);
-
-    /* shared colors */
-    --color-info: var(--color-sky-700);
-    --color-on-info: var(--color-slate-100);
-    --color-success: var(--color-green-700);
-    --color-on-success: var(--color-white);
-    --color-warning: var(--color-amber-600);
-    --color-on-warning: var(--color-amber-50);
-    --color-danger: var(--color-red-700);
-    --color-on-danger: var(--color-slate-100);
-
-    /* border radius */
-    --radius-radius: var(--radius-sm);
-
-    /* ====================== Ending penguin ====================== */
 }
 
 @layer theme {
     .dark {
-        --color-accent: var(--color-sky-700);
-        --color-accent-content: var(--color-sky-700);
-        --color-accent-foreground: var(--color-white);
-
-        /* dark theme */
-        --color-surface-dark: var(--color-zinc-900);
-        --color-surface-dark-alt: var(--color-zinc-800);
-        --color-on-surface-dark: var(--color-zinc-200);
-        --color-on-surface-dark-strong: var(--color-zinc-50);
-        --color-primary-dark: var(--color-sky-600);
-        --color-on-primary-dark: var(--color-white);
-        --color-secondary-dark: var(--color-white);
-        --color-on-secondary-dark: var(--color-black);
-        --color-outline-dark: var(--color-zinc-700);
-        --color-outline-dark-strong: var(--color-zinc-500);
+        --color-accent: var(--color-white);
+        --color-accent-content: var(--color-white);
+        --color-accent-foreground: var(--color-neutral-800);
     }
 }
 
 @layer base {
+
     *,
     ::after,
     ::before,
@@ -95,7 +52,7 @@
 }
 
 [data-flux-label] {
-    @apply !mb-0 !leading-tight;
+    @apply  !mb-0 !leading-tight;
 }
 
 input:focus[data-flux-control],

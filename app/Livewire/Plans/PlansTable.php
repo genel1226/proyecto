@@ -7,14 +7,24 @@ use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Components\SetUp\Exportable;
 use PowerComponents\LivewirePowerGrid\Facades\Filter;
 use PowerComponents\LivewirePowerGrid\Facades\PowerGrid;
 use PowerComponents\LivewirePowerGrid\PowerGridFields;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
 final class PlansTable extends PowerGridComponent
 {
     public string $tableName = 'plansTable';
+    use WithExport;
+
+    // public bool $showFilters = true;
+
+    // public function boot(): void
+    // {
+    //     config(['livewire-powergrid.filter' => 'outside']);
+    // }
 
     public function setUp(): array
     {
@@ -22,12 +32,20 @@ final class PlansTable extends PowerGridComponent
         Button::add('create-plans');
 
         return [
+            PowerGrid::exportable(fileName: 'Plans')
+                ->columnWidth([
+                    2=>30,
+                ])
+                ->striped('A6ACCD')
+                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
             PowerGrid::header()
                 ->showToggleColumns()
                 ->showSearchInput(),
             PowerGrid::footer()
                 ->showPerPage()
                 ->showRecordCount(),
+            PowerGrid::responsive()
+                ->fixedColumns('id', 'nombre', 'sigla', 'lapso', 'style')
         ];
     }
 
@@ -65,46 +83,59 @@ final class PlansTable extends PowerGridComponent
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id'),
+            Column::make('Id', 'id')
+                ->visibleInExport(visible: false),
             Column::make('Nombre', 'nombre')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->visibleInExport(visible: true),
 
             Column::make('Sigla', 'sigla')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->visibleInExport(visible: true),
 
             Column::make('Monto', 'monto')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->visibleInExport(visible: true),
 
-            Column::make('Cantidad u', 'cantidad_u'),
+            Column::make('Cantidad u', 'cantidad_u')
+                ->visibleInExport(visible: true),
+
             Column::make('Lapso', 'lapso')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->visibleInExport(visible: true),
 
             Column::make('Style', 'style')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->visibleInExport(visible: false),
 
             Column::make('Paypal id', 'paypal_id')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->visibleInExport(visible: false),
 
             Column::make('Stripe id', 'stripe_id')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->visibleInExport(visible: false),
 
             Column::make('Tipo', 'tipo')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->visibleInExport(visible: true),
 
             Column::make('Tipo licencia', 'tipo_licencia')
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->visibleInExport(visible: true),
 
             Column::make('Created at', 'created_at_formatted', 'created_at')
-                ->sortable(),
+                ->sortable()
+                ->visibleInExport(visible: false),
 
             Column::action('Action')
         ];
@@ -118,7 +149,7 @@ final class PlansTable extends PowerGridComponent
             Filter::inputText('lapso')->operators(['contains']),
             Filter::inputText('style')->operators(['contains']),
             Filter::inputText('paypal_id')->operators(['contains']),
-            Filter::inputText('stripe_id')->operators(['contains']),
+            // Filter::inputText('stripe_id')->operators(['contains']),
             Filter::inputText('tipo')->operators(['contains']),
             Filter::inputText('tipo_licencia')->operators(['contains']),
             Filter::datetimepicker('created_at'),

@@ -18,79 +18,83 @@
                 </flux:button>
             </flux:modal.trigger>
 
-            <flux:modal name="edit-profile" class="w-full !max-w-2xl" :dismissible="false">
-                <div class="space-y-6">
-                    <div class="flex">
-                        <flux:icon name="plus" />
-                        <flux:heading size="lg">Plan</flux:heading>
-                    </div>
-
-                    <flux:separator />
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <flux:input label="Nombre" placeholder="Nombre del Plan" />
-
-                        <flux:input label="Sigla" type="text" placeholder="Sigla del Plan" />
-
-                        <flux:input label="Monto" type="number" placeholder="Monto del Plan" />
-
-                        <flux:input label="Cantidad de Usuarios" type="number" placeholder="Cantidad de Usuarios" />
-
-                        <div>
-                            <flux:label>Lapso</flux:label>
-                            <flux:select wire:model="lapso" placeholder="Seleccione Lapso del Plan">
-                                <flux:select.option>Mensual</flux:select.option>
-                                <flux:select.option>Semestral</flux:select.option>
-                                <flux:select.option>Anual</flux:select.option>
-                            </flux:select>
+            <flux:modal name="edit-profile" class="w-full max-w-3xl!" :dismissible="false">
+                <form wire:submit.prevent="store">
+                    <div class="space-y-6">
+                        <div class="flex">
+                            <flux:icon name="plus" />
+                            <flux:heading size="lg">Plan</flux:heading>
                         </div>
 
-                        <div>
-                            <flux:label>Tipo de Licencia</flux:label>
-                            <flux:select wire:model="tipo_licencia" placeholder="Seleccione Tipo de Licencia">
-                                <flux:select.option>Basica</flux:select.option>
-                                <flux:select.option>Media</flux:select.option>
-                                <flux:select.option>Completa</flux:select.option>
-                                <flux:select.option>Personalizada</flux:select.option>
-                            </flux:select>
-                        </div>
+                        <flux:separator />
 
-                        <div class="col-span-2">
-                            <div class="grid grid-cols-4">
-                                <div class="space-y-2">
-                                    <label class="text-sm font-medium">Color</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <flux:input label="Nombre" placeholder="Nombre del Plan" wire:model="nombre" />
 
-                                    <br>
+                            <flux:input label="Sigla" type="text" placeholder="Sigla del Plan" wire:model="sigla" />
 
-                                    <input type="color" wire:model.live="form.color"
-                                        class="h-10 w-20 p-1 rounded cursor-pointer border">
-                                </div>
+                            <flux:input label="Monto" type="number" placeholder="Monto del Plan" wire:model="monto" />
 
-                                <flux:checkbox.group wire:model="notifications" label="Personalizable">
-                                    <flux:checkbox label="Marque si es personalizable?" value="push" />
-                                </flux:checkbox.group>
+                            <flux:input label="Cantidad de Usuarios" type="number" placeholder="Cantidad de Usuarios"
+                                wire:model="cantidad_u" />
 
-                                <div class="col-span-2">
-                                    <flux:input label="Cantidad minima de Usuarios" type="number" placeholder="Cantidad Minima de Usuarios" />
+                            <div>
+                                <flux:label>Lapso</flux:label>
+                                <flux:select wire:model="lapso" placeholder="Seleccione Lapso del Plan">
+                                    <flux:select.option>Mensual</flux:select.option>
+                                    <flux:select.option>Semestral</flux:select.option>
+                                    <flux:select.option>Anual</flux:select.option>
+                                </flux:select>
+                            </div>
+
+                            <div>
+                                <flux:label>Tipo de Licencia</flux:label>
+                                <flux:select wire:model="tipo_licencia" placeholder="Seleccione Tipo de Licencia">
+                                    <flux:select.option>Basica</flux:select.option>
+                                    <flux:select.option>Media</flux:select.option>
+                                    <flux:select.option>Completa</flux:select.option>
+                                    <flux:select.option>Personalizada</flux:select.option>
+                                </flux:select>
+                            </div>
+
+                            <div class="col-span-2">
+                                <div class="grid grid-cols-4">
+                                    <div class="space-y-2">
+                                        <label class="text-sm font-medium">Color</label>
+
+                                        <br>
+
+                                        <input type="color" wire:model="color_bagde"
+                                            class="h-10 w-20 p-1 rounded cursor-pointer border">
+                                    </div>
+
+                                    <flux:checkbox.group wire:model="es_personalizable" label="Personalizable">
+                                        <flux:checkbox label="Marque si es personalizable?" value="1" />
+                                    </flux:checkbox.group>
+
+                                    <div class="col-span-2">
+                                        <flux:input label="Cantidad minima de Usuarios" type="number"
+                                            placeholder="Cantidad Minima de Usuarios" wire:model="cantidad_min" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <flux:spacer />
+                        <flux:spacer />
 
-                    <div class="flex justify-between ">
+                        <div class="flex justify-between ">
 
-                        <div class="order-first">
-                            <flux:button variant="ghost">Cancelar</flux:button>
+                            <div class="order-first">
+                                <flux:button variant="ghost">Cancelar</flux:button>
+                            </div>
+
+                            <div class="order-last">
+                                <flux:button type="submit" variant="primary">Save changes</flux:button>
+                            </div>
+
                         </div>
-
-                        <div class="order-last">
-                            <flux:button type="submit" variant="primary">Save changes</flux:button>
-                        </div>
-
                     </div>
-                </div>
+                </form>    
             </flux:modal>
         </div>
 

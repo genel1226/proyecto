@@ -41,6 +41,7 @@
                             <div>
                                 <flux:label>Lapso</flux:label>
                                 <flux:select wire:model="lapso" placeholder="Seleccione Lapso del Plan">
+                                    <flux:select.option>Seleccione Lapso</flux:select.option>
                                     <flux:select.option>Mensual</flux:select.option>
                                     <flux:select.option>Semestral</flux:select.option>
                                     <flux:select.option>Anual</flux:select.option>
@@ -64,7 +65,7 @@
 
                                         <br>
 
-                                        <input type="color" wire:model="color_bagde"
+                                        <input type="color" wire:model="color_badge"
                                             class="h-10 w-20 p-1 rounded cursor-pointer border">
                                     </div>
 

@@ -14,13 +14,13 @@ class Plans extends Component
     public $tipo_licencia;
     public $caracteristicas;
     public $orden;
-    public $color_badge;
+    public $color_badge = '#000000';
     public $es_personalizable;
     public $cantidad_min;
 
     public function store(){
+        $plans = new Plans();
         dd(
-        $plans = new Plans(),
         $plans->nombre = $this->nombre,
         $plans->sigla = $this->sigla,
         $plans->monto = $this->monto,
@@ -31,7 +31,7 @@ class Plans extends Component
         $plans->orden = $this->orden,
         $plans->color_badge = $this->color_badge,
         $plans->es_personalizable = $this->es_personalizable,
-        $plans->es_personalizable = $this->es_personalizable,
+        $plans->cantidad_min = $this->cantidad_min,
         );
 
         redirect()->route('plans');
